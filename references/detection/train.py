@@ -41,7 +41,7 @@ def copypaste_collate_fn(batch):
 
 
 def get_dataset(name, image_set, transform, data_path):
-    paths = {"coco": (data_path, get_coco, 91), "coco_kp": (data_path, get_coco_kp, 2)}
+    paths = {"coco": (data_path, get_coco, 91), "coco_kp": (data_path, get_coco_kp, 2), "coco_rock": (data_path, get_coco, 2), }
     p, ds_fn, num_classes = paths[name]
 
     ds = ds_fn(p, image_set=image_set, transforms=transform)
@@ -64,7 +64,7 @@ def get_args_parser(add_help=True):
 
     parser = argparse.ArgumentParser(description="PyTorch Detection Training", add_help=add_help)
 
-    parser.add_argument("--data-path", default="/datasets01/COCO/022719/", type=str, help="dataset path")
+    parser.add_argument("--data-path", default="coco", type=str, help="dataset path")
     parser.add_argument("--dataset", default="coco", type=str, help="dataset name")
     parser.add_argument("--model", default="maskrcnn_resnet50_fpn", type=str, help="model name")
     parser.add_argument("--device", default="cuda", type=str, help="device (Use cuda or cpu Default: cuda)")
